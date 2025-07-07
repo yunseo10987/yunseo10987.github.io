@@ -7,7 +7,7 @@ categories:
 tags:
   - [SSTI]
 
-permalink: /Problem/[2025-07-07] Simple-SSTI/
+permalink: /categories1/[2025-07-07] Simple-SSTI/
 
 toc: true
 toc_sticky: true
