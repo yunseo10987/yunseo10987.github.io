@@ -3,11 +3,11 @@ title: "[2025-07-07] Simple-SSTI"
 excerpt: "simple-ssti"
 
 categories:
-  - 문제 풀이
+  - Problem
 tags:
   - [SSTI]
 
-permalink: /문제풀이/[2025-07-07] Simple-SSTI/
+permalink: /Problem/[2025-07-07] Simple-SSTI/
 
 toc: true
 toc_sticky: true
