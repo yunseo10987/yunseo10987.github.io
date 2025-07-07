@@ -18,8 +18,8 @@ last_modified_at: 2025-07-07
 
 ## 🦥 본문
 
-![alt text](../assets/images/posts_img/[2025-07-07]%20Simple-SSTI/image.png)
-![alt text](../assets/images/posts_img/[2025-07-07]%20Simple-SSTI/image1.png)
+![image.png](../assets/images/posts_img/[2025-07-07]%20Simple-SSTI/image.png)
+![image.png](../assets/images/posts_img/[2025-07-07]%20Simple-SSTI/image1.png)
 
 ```jsx
 #!/usr/bin/python3
@@ -54,7 +54,7 @@ app.run(host='0.0.0.0', port=8000)
 
 404가 발생하면 해당 <div>를 출력하는 페이지이다. 처음에는 {{FLAG}}를 넣으면 되는 거 아닌가? 라고 생각했다. 하지만
 
-![alt text](../assets/images/posts_img/[2025-07-07]%20Simple-SSTI/image2.png)
+![image.png](../assets/images/posts_img/[2025-07-07]%20Simple-SSTI/image2.png)
 
 위와 같이 아무 것도 나오지 않는다. 
 
