@@ -3,11 +3,11 @@ title: "[2025-07-07] Simple-SSTI"
 excerpt: "simple-ssti"
 
 categories:
-  - Categories2
+  - Categories1
 tags:
   - [SSTI]
 
-permalink: /categories2/post-name-here-2/
+permalink: /categories2/[2025-07-07] Simple-SSTI/
 
 toc: true
 toc_sticky: true
