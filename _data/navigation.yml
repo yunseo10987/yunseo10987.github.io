@@ -19,6 +19,6 @@ main:
 # 2022.02.15 sidebar update : simple ver.
 categories:
   - title: "문제 풀이"
-    url: /categories/categories1/
+    url: /categories/Problem/
   - title: "개념 정리"
-    url: /categories/categories2/
+    url: /categories/Justice/

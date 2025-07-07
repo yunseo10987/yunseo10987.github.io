@@ -1,7 +1,7 @@
 ---
-title: "Categories1"
+title: "문제 풀이"
 layout: category
-permalink: /categories/categories1/
+permalink: /categories/Problem/
 author_profile: true
 taxonomy: Categories1
 sidebar:

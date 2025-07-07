@@ -1,7 +1,7 @@
 ---
-title: "Categories2"
+title: "개념 정리"
 layout: category
-permalink: /categories/categories2/
+permalink: /categories/Justice/
 author_profile: true
 taxonomy: Categories2
 sidebar:
