@@ -1,5 +1,5 @@
 ---
-title: "[2025-07-07] Template Engine"
+title: "[2025-07-08] Template Engine"
 excerpt: "Template Engine 개념 정리"
 
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - [Template]
 
-permalink: /Justice/[2025-07-07] Template Engine/
+permalink: /Justice/[2025-07-08] Template Engine/
 
 toc: true
 toc_sticky: true
