@@ -20,7 +20,8 @@ last_modified_at: 2025-07-09
 
 ### Cookie
 
-```#!/usr/bin/python3
+```
+#!/usr/bin/python3
 from flask import Flask, request, render_template, make_response, redirect, url_for
 
 app = Flask(__name__)
