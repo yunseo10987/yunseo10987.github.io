@@ -170,14 +170,6 @@ app.run(host="0.0.0.0", port=8000)
 - change_password.html
     
     ```c
-    {% extends "base.html" %}
-    {% block title %}Change Password{% endblock %}
-    
-    {% block head %}
-      {{ super() }}
-    {% endblock %}
-    
-    {% block content %}
     <h2>Change Password</h2><br/>
     <form method="GET">
       <div class="form-group">
@@ -187,7 +179,6 @@ app.run(host="0.0.0.0", port=8000)
       <input type="text" value="{{ csrf_token }}" name="csrftoken" hidden>
       <button type="submit" class="btn btn-default">Change Password</button>
     </form>
-    {% endblock %}
     ```
     
     - csrf_token이 숨겨져 있음 흠….
