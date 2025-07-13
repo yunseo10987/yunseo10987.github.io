@@ -1,5 +1,5 @@
 ---
-title: "[2025-07-11] CSRF-advanced"
+title: "[2025-07-13] CSRF-advanced"
 excerpt: "CSRF-advanced"
 
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - [CSRF]
 
-permalink: /Problem/[2025-07-11] CSRF-advanced/
+permalink: /Problem/[2025-07-13] CSRF-advanced/
 
 toc: true
 toc_sticky: true
