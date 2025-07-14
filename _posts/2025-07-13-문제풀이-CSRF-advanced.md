@@ -90,9 +90,6 @@ for i in range(32):
             flag += ch
             break
     
-    {% raw %}
-    print(f'FLAG: DH{{{flag}}}')
-    {% endraw %}
 ```
 
 해당 코드로 브루트 포싱을 해서 플래그를 얻을 수  있는 간단한 문제였다.
