@@ -74,6 +74,8 @@ app.listen(8000, '0.0.0.0');
 
 ### 풀이
 
+{% raw %}
+
 ```
 import requests, string
 
@@ -89,7 +91,11 @@ for i in range(32):
         if response.text == SUCCESS:
             flag += ch
             break
-    
+    {% raw %}
+    print(f'FLAG: DH{{{flag}}}')
+    {% endraw %}
 ```
+
+{% endraw %}
 
 해당 코드로 브루트 포싱을 해서 플래그를 얻을 수  있는 간단한 문제였다.
