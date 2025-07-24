@@ -1,13 +1,13 @@
 ---
-title: "[2025-07-25] phpMyRedis"
+title: "2025-07-25 phpMyRedis"
 excerpt: "Redis injection"
 
 categories:
   - Problem
 tags:
-  - [NoSQL injection, Redis]
+  - [NoSQL injection]
 
-permalink: /Problem/[2025-07-25] phpMyRedis/
+permalink: /Problem/2025-07-25 phpMyRedis/
 
 toc: true
 toc_sticky: true
