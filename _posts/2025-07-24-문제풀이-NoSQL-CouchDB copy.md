@@ -1,5 +1,5 @@
 ---
-title: "[2025-07-24] NoSQL-CouchDB111"
+title: "[2025-07-25] NoSQL-CouchDB111"
 excerpt: "CouchDB injection"
 
 categories:
@@ -7,13 +7,13 @@ categories:
 tags:
   - [NoSQL injection, CouchDB]
 
-permalink: /Problem/[2025-07-24] NoSQL-CouchDB111/
+permalink: /Problem/[2025-07-25] NoSQL-CouchDB111/
 
 toc: true
 toc_sticky: true
 
-date: 2025-07-24
-last_modified_at: 2025-07-24
+date: 2025-07-25
+last_modified_at: 2025-07-25
 ---
 
 ## 🦥 본문
