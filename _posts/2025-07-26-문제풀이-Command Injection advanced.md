@@ -1,6 +1,6 @@
 ---
 title: "[2025-07-26] Command Injection advanced"
-excerpt: "Command Injection"
+excerpt: "Command Injection 심화"
 
 categories:
   - Problem

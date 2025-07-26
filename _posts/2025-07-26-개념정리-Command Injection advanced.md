@@ -1,6 +1,6 @@
 ---
 title: "[2025-07-26] Command Injection 심화"
-excerpt: "Command Injection 심화 버전"
+excerpt: "Command Injection 심화"
 
 categories:
   - Justice
