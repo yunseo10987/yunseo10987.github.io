@@ -1,6 +1,6 @@
 ---
 title: "[2025-07-27] Apache htaccess"
-excerpt: "File Vulnerability 심화"
+excerpt: "File Vulnerability advanced"
 
 categories:
   - Problem
