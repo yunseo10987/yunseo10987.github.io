@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>5초 대기 페이지</title>
+  <style>
+    :root { --bg:#0f172a; --fg:#e2e8f0; --accent:#22d3ee; }
+    html,body { height:100%; margin:0; }
+    body { font-family:system-ui,-apple-system,Segoe UI,Roboto,Pretendard,sans-serif; background:#fff; color:#111; }
+    /* 게이트(대기 오버레이) */
+    #gate {
+      position:fixed; inset:0; background:var(--bg); color:var(--fg);
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;
+    }
+    .spinner {
+      width:44px; height:44px; border-radius:50%;
+      border:4px solid rgba(255,255,255,.2);
+      border-top-color: var(--accent);
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .muted { color:#9aa4b2; font-size:14px; }
+    /* 실제 본문 */
+    #content { max-width:720px; margin:48px auto; padding:0 20px; }
+  </style>
+</head>
+<body>
+  <!-- 5초 동안 보여줄 대기 레이어 -->
+  <div id="gate" role="status" aria-live="polite" aria-busy="true">
+    <div class="spinner" aria-hidden="true"></div>
+    <div>잠시만 기다려 주세요…</div>
+    <div class="muted"><span id="remaining">5</span>초 후 시작됩니다</div>
+    <noscript class="muted">JavaScript가 꺼져 있어 자동 진행되지 않습니다.</noscript>
+  </div>
+
+  <!-- 5초 후 표시될 본문 -->
+  <main id="content" hidden>
+    <h1>기본 페이지</h1>
+    <p>여기는 5초 대기 후 표시되는 본문입니다.</p>
+  </main>
+
+  <script>
+    // 고정 5초 대기
+    const DELAY_MS = 5000;
+
+    const gate = document.getElementById('gate');
+    const content = document.getElementById('content');
+    const remainingEl = document.getElementById('remaining');
+
+    const start = Date.now();
+
+    // 남은 시간 표시(초 단위, 깔끔하게 반올림)
+    const tick = () => {
+      const left = Math.max(0, DELAY_MS - (Date.now() - start));
+      remainingEl.textContent = String(Math.ceil(left / 1000));
+      if (left <= 0) {
+        clearInterval(timer);
+        gate.style.display = 'none';
+        content.hidden = false;
+      }
+    };
+
+    // 200ms 간격으로 남은 시간 갱신
+    const timer = setInterval(tick, 200);
+    tick();
+  </script>
+</body>
+</html>
