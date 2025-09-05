@@ -1,9 +1,9 @@
 ---
-title: "Categories3"
+title: "논문 리뷰"
 layout: category
-permalink: /categories/categories3/
+permalink: /categories/Reviews/
 author_profile: true
-taxonomy: Categories3
+taxonomy: Reviews
 sidebar:
   nav: "categories"
 ---
