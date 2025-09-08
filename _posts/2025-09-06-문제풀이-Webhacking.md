@@ -1,6 +1,6 @@
 ---
 title: "[2025-09-06] WebHacking.kr 1일차"
-excerpt: "Challenge 1"
+excerpt: "Challenge 1, Challenge 15, Challenge 26,Challenge 16"
 
 categories:
   - Problem
