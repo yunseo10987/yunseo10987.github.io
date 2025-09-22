@@ -1,9 +1,9 @@
 ---
-title: "Categories4"
+title: "자격증"
 layout: category
-permalink: /categories/categories4/
+permalink: /categories/License/
 author_profile: true
-taxonomy: Categories4
+taxonomy: License
 sidebar:
   nav: "categories"
 ---
