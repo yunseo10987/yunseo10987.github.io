@@ -1,5 +1,5 @@
 ---
-title: "[2025-11-27] MITMPROXY"
+title: "[2025-11-27] MITMPROXY 작동 방식"
 excerpt: "설명충 프로젝트"
 
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - [NetWork]
 
-permalink: /Project/[2025-11-27] MITMPROXY/
+permalink: /Project/[2025-11-27] MITMPROXY 작동 방식/
 
 toc: true
 toc_sticky: true
