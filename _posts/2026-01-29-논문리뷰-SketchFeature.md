@@ -1,13 +1,14 @@
 ---
-title: "[2026-01-29] SketchFeature: High-Quality Per-Flow Feature Extractor Towards Security-Aware Data Plane"
-excerpt: "DDoS Detection"
+title: "[2026-01-29] SketchFeature"
+excerpt: "High-Quality Per-Flow Feature Extractor Towards Security-Aware Data Plane
+High-Quality Per-Flow Feature Extractor Towards Security-Aware Data Plane"
 
 categories:
   - Reviews
 tags:
   - [NetWork]
 
-permalink: /Reviews/[2026-01-29] SketchFeature: High-Quality Per-Flow Feature Extractor Towards Security-Aware Data Plane/
+permalink: /Reviews/[2026-01-29] SketchFeature/
 
 toc: true
 toc_sticky: true
