@@ -1,13 +1,13 @@
 ---
-title: "[2026-05-28] MITRE ATT&CK: Design and Philosophy"
-excerpt: "MITRE ATT&CK"
+title: "[2026-05-28] MITRE ATT&CK"
+excerpt: "Design and Philosophy"
 
 categories:
   - Reviews
 tags:
   - [NetWork]
 
-permalink: /Reviews/[2026-05-28] MITRE ATT&CK: Design and Philosophy/
+permalink: /Reviews/[2026-05-28] MITRE ATT&CK/
 
 toc: true
 toc_sticky: true
